@@ -82,7 +82,7 @@
 <meta name="msvalidate.01" content="A18ACD436D5A3997E3DA2573E3FD792A" />
 
 <meta name="p:domain_verify" content="84a72b56883f4f5a9735370ae9dbc696" />
-		<script src='https://r-login.wordpress.com/remote-login.php?action=js&amp;host=observer.com&amp;id=35584880&amp;t=1571406964&amp;back=https%3A%2F%2Fobserver.com%2F2019%2F10%2Fdemocratic-debate-2020-andrew-yang-miscrosoft-bing-break-up-big-tech%2F' type="text/javascript"></script>
+		<script src='https://r-login.wordpress.com/remote-login.php?action=js&amp;host=observer.com&amp;id=35584880&amp;t=1571403638&amp;back=https%3A%2F%2Fobserver.com%2F2019%2F10%2Fdemocratic-debate-2020-andrew-yang-miscrosoft-bing-break-up-big-tech%2F' type="text/javascript"></script>
 		<script type="text/javascript">
 		/* <![CDATA[ */
 			if ( 'function' === typeof WPRemoteLogin ) {
@@ -548,118 +548,56 @@ googletag.pubads().setTargeting( "author", ["sissi-cao"]);
 	});
 </script>
 
+<!-- Amazon A9 -->
+<script type="text/javascript">
+    //load the apstag.js library
+!function(a9,a,p,s,t,A,g){if(a[a9])return;function q(c,r){a[a9]._Q.push([c,r])}a[a9]={init:function(){q("i",arguments)},fetchBids:function(){q("f",arguments)},setDisplayBids:function(){},targetingKeys:function(){return[]},_Q:[]};A=p.createElement(s);A.async=!0;A.src=t;g=p.getElementsByTagName(s)[0];g.parentNode.insertBefore(A,g)}("apstag",window,document,"script","//c.amazon-adsystem.com/aax2/apstag.js");
+
+    apstag.init({
+			pubID: '076b6f38-c5e1-40ef-8e28-908bb89612b2',
+			adServer: 'googletag'
+		});
+
+    apstag.fetchBids({
+     slots:  [
+		        {
+            "slotID": "div-gpt-ad-771860824845458250-1",
+            "slotName": "/1008049/observer_leaderboard_top",
+            "sizes": [[728, 90], [970, 250]]
+        },
+        {
+            "slotID": "div-gpt-ad-article-1",
+            "slotName": "/1008049/observer_article_1",
+            "sizes": [[300, 250], [300, 600]]
+        },
+        {
+            "slotID": "div-gpt-ad-1458227612888-0",
+            "slotName": "/1008049/observer_fixedarticle_1",
+            "sizes": [[300, 250], [300, 600]]
+        },
+	    		    ],
+     timeout: 2e3
+}, function(bids) {
+     // set apstag targeting on googletag, then trigger the first DFP request in googletag's disableInitialLoad integration
+     googletag.cmd.push(function(){
+         apstag.setDisplayBids();
+        // googletag.pubads().refresh();
+     });
+}); 
+</script>
+
+
 <script type="text/javascript">
 	var pbjs = pbjs || {};
 	pbjs.que = pbjs.que || [];
 
 	// Send all bids into DFP
 	pbjs.que.push(function () {
+        pbjs.addAdUnits(adUnits);
 		pbjs.setConfig({
 			enableSendAllBids: true,
-			priceGranularity: "high"
-		});
-
-		pbjs.enableAnalytics({
-			provider: 'yuktamedia',
-			options: {
-				pubId: 6,
-				pubKey: 'ZXlKaGJHY2lPaUpJVXpJMU5pSjkuTmcuQmF5bzBpQUdfcWZTNUZXX2lKN1NnUjN5X0gyR2YtX3ppTGpZOWl4NFUxdw=='
-			}
-		});
-
-				// Rubicon has special bidder settings (15% bid adjustment)
-		pbjs.bidderSettings = {
-			rubicon: {
-				bidCpmAdjustment: function(bidCpm) {
-					console.log("Rubicon bid adjust: " + (0.85 * bidCpm));
-
-					return 0.85 * bidCpm;
-				}
-			}
-		}
-	});
-</script>
-<!-- Amazon A9 -->
-<script type="text/javascript">
-	function fetchHeaderBids() {
-
-		var TIMEOUT = 2000;
-
-		//declare bidders
-		var bidders = ['a9', 'prebid'];
-
-		// create a requestManager to keep track of bidder state to determine when to send ad server
-		// request and what apstagSlots to request from the ad server
-		var requestManager = {
-			adserverRequestSent: false,
-			apstagSlots: apstagSlots,
-			adUnits: adUnits
-		};
-
-		//loop through bidder array and add the bidders to the request manager:
-		bidders.forEach(function (bidder) {
-			requestManager[bidder] = false;
-		});
-
-		// return true if all bidders have returned
-		function allBiddersBack() {
-			var allBiddersBack = bidders
-			// get the booleans from the object
-				.map(function (bidder) {
-					return requestManager[bidder];
-				})
-				// get rid of false values - indicates that the bidder has responded
-				.filter(Boolean)
-				// if length is equal to bidders, all bidders are back
-				.length === bidders.length;
-			return allBiddersBack;
-		}
-
-		// handler for header bidder responses
-		function headerBidderBack(bidder) {
-			// return early if request to adserver is already sent
-			if (requestManager.adserverRequestSent === true) {
-				return;
-			}
-			// set the bidder targeting and flip bidder back flag
-			if (bidder === 'a9') {
-				requestManager.a9 = true;
-			} else if (bidder === 'prebid') {
-				requestManager.prebid = true;
-			}
-
-			// if all bidders are back, send the request to the ad server
-			if (allBiddersBack()) {
-				sendAdserverRequest();
-			}
-		}
-
-		// actually get ads from DFP
-		function sendAdserverRequest() {
-
-			// return early if request already sent
-			if (requestManager.adserverRequestSent === true) {
-				return;
-			}
-
-			// flip the boolean that keeps track of whether the adserver request was sent
-			requestManager.adserverRequestSent = true;
-
-			// make ad request to DFP
-			googletag.cmd.push(function () {
-				apstag.setDisplayBids();
-				pbjs.setTargetingForGPTAsync();
-				googletag.pubads().refresh();
-			});
-		}
-
-		function requestBids() {
-
-			// request bids from prebid
-			pbjs.que.push(function () {
-				pbjs.addAdUnits(requestManager.adUnits);
-				pbjs.setConfig({
-					sizeConfig: [
+			priceGranularity: "high",
+            sizeConfig: [
 												{
 							'mediaQuery': '(min-width: 1622px)',
 							'sizesSupported': [
@@ -733,45 +671,54 @@ googletag.pubads().setTargeting( "author", ["sissi-cao"]);
 							'labels': ['small_1']
 						}
 												]
-				});
-				pbjs.requestBids({
-					bidsBackHandler: function (bidResponses) {
-						headerBidderBack('prebid');
-					}
-				});
-			});
-
-			// fetch bids from APS
-			apstag.fetchBids({
-				slots: requestManager.apstagSlots
-			}, function (bids) {
-				headerBidderBack('a9');
-			});
-		}
-
-		requestBids();
-		// set timeout to send request to call sendAdserverRequest() after timeout
-		// if all bidders haven't returned before then
-		window.setTimeout(function () {
-			sendAdserverRequest();
-		}, TIMEOUT);
-	};
-
-	// Wait for: apstag
-	deferUntil(function() {
-		return typeof apstag != 'undefined';
-	}, function() {
-		//initialize the apstag.js library on the page to allow bidding
-		apstag.init({
-			pubID: '076b6f38-c5e1-40ef-8e28-908bb89612b2',
-			adServer: 'googletag'
 		});
 
-		fetchHeaderBids(apstagSlots, adUnits);
+		pbjs.enableAnalytics({
+			provider: 'yuktamedia',
+			options: {
+				pubId: 6,
+				pubKey: 'ZXlKaGJHY2lPaUpJVXpJMU5pSjkuTmcuQmF5bzBpQUdfcWZTNUZXX2lKN1NnUjN5X0gyR2YtX3ppTGpZOWl4NFUxdw=='
+			}
+		});
+
+				// Rubicon has special bidder settings (15% bid adjustment)
+		pbjs.bidderSettings = {
+			rubicon: {
+				bidCpmAdjustment: function(bidCpm) {
+					console.log("Rubicon bid adjust: " + (0.85 * bidCpm));
+
+					return 0.85 * bidCpm;
+				}
+			}
+        }
+        pbjs.requestBids({
+            bidsBackHandler: initAdserver,
+            timeout: PREBID_TIMEOUT
+        });
+        function initAdserver() {
+            if (pbjs.initAdserverSet) return;
+            pbjs.initAdserverSet = true;
+            googletag.cmd.push(function () {
+                pbjs.setTargetingForGPTAsync && pbjs.setTargetingForGPTAsync();
+                googletag.pubads().refresh();
+            });
+        }
+
+        // in case PBJS doesn't load
+        setTimeout(function () {
+            initAdserver();
+        }, FAILSAFE_TIMEOUT);
+
+
+
+
 	});
 </script>
+
+
 <script type='text/javascript'>
-	var PREBID_TIMEOUT = 1200;
+    var PREBID_TIMEOUT = 1200;
+    var FAILSAFE_TIMEOUT = 3000;
 	nextSlotId = 9;
 
 	/**
@@ -806,11 +753,17 @@ googletag.pubads().setTargeting( "author", ["sissi-cao"]);
 	function refreshBid(adSlot, adUnitName) {
 		// console.info('NYOVMG-ADS: Refreshing Bid', adSlot, adUnit);
 		pbjs.que.push(function () {
-			pbjs.requestBids({
+            apstag.fetchBids({
+
+                slots: apstagSlots,
+                timeout: PREBID_TIMEOUT
+            });
+            pbjs.requestBids({
 				timeout: PREBID_TIMEOUT,
 				adUnitCodes: [adSlot],
 				bidsBackHandler: function () {
-					// console.info('NYOVMG-ADS: bid back handler triggered');
+                    // console.info('NYOVMG-ADS: bid back handler triggered');
+                    apstag.setDisplayBids([adSlot]);
 					pbjs.setTargetingForGPTAsync([adSlot]);
 					googletag.pubads().refresh([adUnitName], { changeCorrelator: false });
 				}
@@ -1286,7 +1239,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<li class="instagram">
 							<a target="_blank" data-label="instagram-footer" href="https://instagram.com/observer" target="_blank"><i class="icon icon-instagram"></i></a>
 						</li>
-												<li class="email"><a target="_blank" data-label="email-footer" href="mai&#108;t&#111;&#058;&#101;&#100;i&#116;ori&#097;l&#064;&#111;b&#115;&#101;r&#118;&#101;&#114;&#046;c&#111;&#109;?Subject=Feedback Microsoft Reacts to Andrew Yang Dissing Bing at Dem Debate: Wanna Redo Math in Excel?"><i class="icon icon-mail"></i></a></li>
+												<li class="email"><a target="_blank" data-label="email-footer" href="&#109;a&#105;lt&#111;:edit&#111;r&#105;&#097;&#108;&#064;o&#098;&#115;erv&#101;&#114;&#046;com?Subject=Feedback Microsoft Reacts to Andrew Yang Dissing Bing at Dem Debate: Wanna Redo Math in Excel?"><i class="icon icon-mail"></i></a></li>
 					</ul>
 				</div>
 			</div>
@@ -1404,7 +1357,7 @@ _stq = window._stq || [];
 _tkq.push(['storeContext', {'blog_id':'35584880','blog_tz':'-4','user_lang':'en','blog_lang':'en','user_id':'0'}]);
 _stq.push(['view', {'blog':'35584880','v':'wpcom','tz':'-4','user_id':'0','post':'1206785','subd':'nyoobserver'}]);
 function st_vt() {var x=document.createElement("img");x.src="https://pixel.wp.com/g.gif?blog=35584880&v=wpcomvt&tz=-4&user_id=0&post=1206785&subd=nyoobserver&rand="+Math.random();}
-_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1BNmNJfGhxNCVxUDExYmtib2E/SzdEJm0lUEtbdFU0fFk4cHZvcUFrZT90Tn4yQm1+R3NyNTdhX19bakUtN0M3czczb0lDUzljfm9FWXpxUGZXLUZQSFlONnpDZXxwcFRqcjlaMUErd1VSQURMfjhJdmglKzklV3xJYX5DSH5UPWdJU1Rway1HVUcvcUZZSkdzLD98dVYlcEs1YmUxRExzZk1HbElGME94PUlpS2cxRGlyNWoyJWtRenwzVzRTNmtqen5mQz9mXTNnTmVwWFhbTUtVJnlnWFRHQVd6Ln5penFKaURtbzlVYmsyd0FUZWlMNjk5b3pUOENoPS1vVlZbVQ=='}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1BNmNJfGhxNCVxUDExYmtib2E/SzdEJm0lUEtbdFU0fFk4cHZvcUFrZT90Tn4yQm1+R3NyNTdhX19bakUtN0M3czczb0lDUzljfm9FWXpxUGZXLUZQSFlONnpDZXxwcFRqcjlaMUErd1VSREwyN3R+elR8VV94X2tbajFVeH5FJi49QnxXa1ZJZ2xYLmlNMHNyWlt5ci9nVytxTWR1X3UxTnUmN29QYVBBYlYydHNkU08zZzU3eHVZbkE9VW9aald6dEp1ZFJrd05jS2hBdkhFJVFMTjglLEl6eWl1PUw1UWE3M2xFZ09fY2JDRS1Qen5yRXwzQ0FtNHJuUj9mRUtqTlk='}]);
 _stq.push([ 'clickTrackerInit', '35584880', '1206785' ]);
 	</script>
 <noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:0px;width:0px;overflow:hidden" alt="" /></noscript>
@@ -1477,8 +1430,8 @@ if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
 </body>
 </html>
 <!--
-	generated 209 seconds ago
-	generated in 0.112 seconds
-	served from batcache in 0.002 seconds
-	expires in 91 seconds
+	generated 60 seconds ago
+	generated in 0.133 seconds
+	served from batcache in 0.001 seconds
+	expires in 240 seconds
 -->
